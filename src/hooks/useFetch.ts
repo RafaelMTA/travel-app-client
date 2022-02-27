@@ -4,7 +4,7 @@ import { useAuth } from './useAuth';
 const useFetch = (method:string) => {
     const auth = useAuth();
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<any>([]);
     const [loading, setLoading] = useState(false);
     const [loadingError, setLoadingError] = useState(false);
 
@@ -29,17 +29,14 @@ const useFetch = (method:string) => {
             headers: headers,
             body: JSON.stringify(body)
         });
-
         return response.json();
     };
 
     const execute = async(eventId?:string, table?:string, tableId?:string, query?:string, body?:object) => {
         try{
             setLoading(true);
-            const response = await fetchData(eventId, table, tableId, query, body);      
-            if(response.error) return setLoadingError(true); 
-            console.log("Response: " + JSON.stringify(response));
-            setData(response);
+            const response = await fetchData(eventId, table, tableId, query, body);    
+            setData(response.data);
             setLoading(false);
             setLoadingError(false);
         }catch(error){
@@ -48,6 +45,7 @@ const useFetch = (method:string) => {
     }
 
     useEffect(() => {
+        console.log("Fetch Context");
         if(method !== 'GET') return;
         (async() => await execute())();
     }, []);

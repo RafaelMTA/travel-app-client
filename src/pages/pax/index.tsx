@@ -1,5 +1,5 @@
 import React from 'react';
-import PaxRepository from 'components/repositories/pax';
+import PaxRepository from 'components/Repositories/pax';
 
 const Pax = () => {
     const handleSearch = () => {

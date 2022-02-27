@@ -1,5 +1,5 @@
 import React from 'react';
-import ServiceRepository from 'components/repositories/service';
+import ServiceRepository from 'components/Repositories/service';
 
 const Service = () => {
     const handleSearch = () => {

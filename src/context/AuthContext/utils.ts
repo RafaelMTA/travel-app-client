@@ -1,6 +1,6 @@
 import { signin } from "service/api";
 
-export const setTokenLocalStorage = (token:string) => {
+export const setTokenLocalStorage = (token:string|null) => {
     localStorage.setItem("t", JSON.stringify(token));
 }
 
@@ -9,9 +9,9 @@ export const getTokenLocalStorage = () => {
 
     if(!json) return null;
 
-    const user = JSON.parse(json);
+    const token = JSON.parse(json);
 
-    return user ?? null;
+    return token ?? null;
 }
 
 export const LoginRequest = async(email: string, password: string) => {

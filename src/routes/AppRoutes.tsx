@@ -7,31 +7,53 @@ import Pax from 'pages/pax';
 import Profile from 'pages/profile';
 import Transport from 'pages/transport';
 import Service from 'pages/service';
+import Dashboard from 'pages/dashboard';
 
 import { AuthProvider } from 'context/AuthContext';
+import { EventProvider } from 'context/EventContext';
+
 import { useAuth } from 'hooks/useAuth';
+import { useEvent } from 'hooks/useEvent';
+
+import Template from 'components/template';
+
+import { Loading } from './style';
 
 const AppRoutes = () => {
     const Private = ({children}:{ children:JSX.Element }) => {
         const auth = useAuth();
 
-        // if(!auth.token) return(<Navigate to="/login" />);
+        if(auth.loading) return (<Loading>Loading...</Loading>);
+        if(!auth.authenticated) return(<Navigate to="/login" />);
+        
+        return (<Template>{children}</Template>);
+    }
 
-        return children;
+    const EventPrivate = ({children}:{ children:JSX.Element }) => {
+        const event = useEvent();
+
+        if(event.loading) return (<Loading>Loading...</Loading>);
+
+        return (<Private>{children}</Private>);
     }
 
     return(
         <Router>
-            <AuthProvider>       
-                <Routes>                  
-                    <Route path="/login" element={<Login />} />                    
-                    <Route path="/" element={<Private><Event /></Private>} />
-                    <Route path="/accommodation" element={<Private><Accommodation /></Private>} />
-                    <Route path="/pax" element={<Private><Pax /></Private>} />
-                    <Route path="/profile" element={<Private><Profile /></Private>} />
-                    <Route path="/transport" element={<Private><Transport /></Private>} />
-                    <Route path="/service" element={<Private><Service /></Private>} />             
-                </Routes>
+            <AuthProvider>  
+                <EventProvider>   
+                    <Routes>                  
+                        <Route path="/login" element={<Login />} />             
+
+                        <Route path="/" element={<Private><Event /></Private>} />
+                        <Route path="/profile" element={<Private><Profile /></Private>} />
+                        
+                        <Route path="/dashboard" element={<EventPrivate><Dashboard /></EventPrivate>} />
+                        <Route path="/accommodation" element={<EventPrivate><Accommodation /></EventPrivate>} />
+                        <Route path="/pax" element={<EventPrivate><Pax /></EventPrivate>} />                       
+                        <Route path="/transport" element={<EventPrivate><Transport /></EventPrivate>} />
+                        <Route path="/service" element={<EventPrivate><Service /></EventPrivate>} />             
+                    </Routes>
+                </EventProvider>  
             </AuthProvider>
         </Router>
     );

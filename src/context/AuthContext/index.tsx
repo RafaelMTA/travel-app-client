@@ -1,10 +1,12 @@
+import { useEvent } from 'hooks/useEvent';
 import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getTokenLocalStorage, LoginRequest, setTokenLocalStorage } from './utils';
 
 export interface IContext{
     authenticated: boolean;
-    token?: string;
+    token?: string | null;
+    loading: boolean;
     login: (email:string, password:string) => Promise<void>;
     logout: () => void;
 }
@@ -13,12 +15,14 @@ export const AuthContext = createContext<IContext>({} as IContext);
 
 export const AuthProvider = ({children}:{children:JSX.Element}) => {
     const navigate = useNavigate();
-    const [token, setToken] = useState<string>();
+    const event = useEvent();
+    const [token, setToken] = useState<string | null>();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const token = getTokenLocalStorage();
         if(token) setToken(token);
-        console.log("token: " + !!token);
+        setLoading(false);
     }, []);
 
     const login = async(email:string, password:string) => {
@@ -30,8 +34,9 @@ export const AuthProvider = ({children}:{children:JSX.Element}) => {
     }
 
     const logout = async() => {
-        setToken('');
-        setTokenLocalStorage('');
+        setToken(null);
+        setTokenLocalStorage(null);
+        event.clear();
         navigate("/login");
     }
 
@@ -40,6 +45,7 @@ export const AuthProvider = ({children}:{children:JSX.Element}) => {
             value={{
                 authenticated: !!token,
                 token,
+                loading,
                 login,
                 logout
             }}

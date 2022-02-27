@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileRepository from 'components/repositories/profile';
+import ProfileRepository from 'components/Repositories/profile';
 
 const Profile = () => {
     const handleSearch = () => {

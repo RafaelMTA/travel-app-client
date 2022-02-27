@@ -1,5 +1,5 @@
 import React from 'react';
-import TransportRepository from 'components/repositories/transport';
+import TransportRepository from 'components/Repositories/transport';
 
 const Transport = () => {
     const handleSearch = () => {
