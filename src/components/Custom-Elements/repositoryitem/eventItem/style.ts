@@ -87,8 +87,9 @@ export const Action = styled.span`
 
     place-self: start end;
 
-    &:hover{
-        cursor: pointer;
+    cursor: pointer;
+
+    &:hover{      
         transition: 0.5s;
         color: red;
     }

@@ -10,7 +10,7 @@ import { Container } from './style';
 const Login = () => {
     const auth = useAuth();
 
-    const handleSubmit = async(e: React.FormEvent, email:string, password:string) : Promise<void>=> {    
+    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>, email:string, password:string) => {    
         try{
             e.preventDefault();
             await auth.login(email, password);

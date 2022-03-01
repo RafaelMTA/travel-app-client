@@ -24,11 +24,11 @@ const Sidebar = () => {
             <NavHeader>
                 <div>
                     <LinkItem path="/profile" text="Charles" icon={<ImageText src="https://randomuser.me/api/portraits/thumb/men/29.jpg" />}></LinkItem>
-                    <hr />
-                    <LinkItem path="/" text="Home" icon={<HomeIcon className="icon-item" />}></LinkItem>
-                    {evt.event && 
-                    <>                       
-                        <LinkItem path="/event" text="Event" icon={<EventIcon className="icon-item" />}></LinkItem>
+                    <hr />     
+                    <LinkItem path="/" text="Home" icon={<HomeIcon className="icon-item" />}></LinkItem>               
+                    {evt.eventId && 
+                    <>                                       
+                        <LinkItem path="/event-formEdit" text="Event" icon={<EventIcon className="icon-item" />}></LinkItem>
                         <LinkItem path="/pax" text="Pax" icon={<PeopleAltRoundedIcon className="icon-item" />}></LinkItem>
                         <LinkItem path="/transport" text="Transport" icon={<DirectionsCarIcon className="icon-item" />}></LinkItem>
                         <LinkItem path="/accommodation" text="Accommodation" icon={<HotelIcon className="icon-item" />}></LinkItem>

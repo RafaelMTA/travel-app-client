@@ -9,14 +9,14 @@ import { useEvent } from 'hooks/useEvent';
 
 const Template = ({children}:{ children:JSX.Element }) => {
     const event = useEvent();
-
     const handleHome = (e:React.MouseEvent) => {
         e.preventDefault();
         event.clear();
     }
 
     return(
-        <Container>
+        <>   
+        <Container>          
             <Head>
                 <Header imagePath='' title='Travel-App' onClick={() => handleHome} />
             </Head>
@@ -27,6 +27,7 @@ const Template = ({children}:{ children:JSX.Element }) => {
                 {children}
             </Body>
         </Container>
+        </>
     );
 }
 

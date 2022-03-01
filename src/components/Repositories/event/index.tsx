@@ -1,14 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Container, ContainerItem, List } from './style';
 
 import EventItem from 'components/Custom-Elements/repositoryitem/eventItem';
-import InputSearch from 'components/Custom-Elements/InputSearch';
+import Repository from 'components/template/Repository';
 
 interface Props {
     repository: Array<any>;
-    onSearch(query:string): void;
-    onEdit(id:string): void;
-    onDelete(): void;
 }
 
 interface Event {
@@ -19,11 +16,11 @@ interface Event {
     description: string;
 }
 
-const EventRepository = ({repository, onSearch, onEdit, onDelete} : Props) => {
+const EventRepository = ({repository} : Props) => {
 
     return (
-        <Container>
-            <InputSearch onSearch={onSearch}/>
+        <Container>       
+            {/* <Repository placeholder="" /> */}
             <ContainerItem>           
                 <List>
                     {repository.map((item: Event) => {
@@ -35,8 +32,6 @@ const EventRepository = ({repository, onSearch, onEdit, onDelete} : Props) => {
                                     description={item.description} 
                                     start_date={item.start_date} 
                                     end_date={item.end_date} 
-                                    onEdit={onEdit} 
-                                    onDelete={onDelete}
                                 />
                             </li>
                         );

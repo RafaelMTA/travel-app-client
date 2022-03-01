@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Container } from './style';
 
-import InputIcon from 'components/Custom-Elements/InputIcon';
+import InputIcon from 'components/Custom-Elements/inputIcon';
 
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import SearchIcon from '@material-ui/icons/Search';

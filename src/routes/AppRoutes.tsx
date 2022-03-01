@@ -9,6 +9,9 @@ import Transport from 'pages/transport';
 import Service from 'pages/service';
 import Dashboard from 'pages/dashboard';
 
+import EventFormEdit from 'components/Forms/eventForm/edit'
+import EventFormNew from 'components/Forms/eventForm/new'
+
 import { AuthProvider } from 'context/AuthContext';
 import { EventProvider } from 'context/EventContext';
 
@@ -51,7 +54,10 @@ const AppRoutes = () => {
                         <Route path="/accommodation" element={<EventPrivate><Accommodation /></EventPrivate>} />
                         <Route path="/pax" element={<EventPrivate><Pax /></EventPrivate>} />                       
                         <Route path="/transport" element={<EventPrivate><Transport /></EventPrivate>} />
-                        <Route path="/service" element={<EventPrivate><Service /></EventPrivate>} />             
+                        <Route path="/service" element={<EventPrivate><Service /></EventPrivate>} />      
+
+                        <Route path="/event-formNew" element={<EventPrivate><EventFormNew /></EventPrivate>} />
+                        <Route path="/event-formEdit" element={<EventPrivate><EventFormEdit /></EventPrivate>} />           
                     </Routes>
                 </EventProvider>  
             </AuthProvider>
