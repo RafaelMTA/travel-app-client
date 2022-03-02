@@ -1,37 +1,23 @@
-import React from 'react';
 import { Container, ContainerItem, List } from './style';
-
+import { Event } from 'interfaces/Event';
 import EventItem from 'components/Custom-Elements/repositoryitem/eventItem';
-import Repository from 'components/template/Repository';
 
 interface Props {
-    repository: Array<any>;
+    repository: Array<Event>;
+    onDelete(id:string, title:string):Promise<void>;
 }
 
-interface Event {
-    id: string;
-    name: string;
-    start_date: string;
-    end_date: string;
-    description: string;
-}
-
-const EventRepository = ({repository} : Props) => {
-
+const EventRepository = ({repository, onDelete} : Props) => {
     return (
         <Container>       
-            {/* <Repository placeholder="" /> */}
             <ContainerItem>           
                 <List>
-                    {repository.map((item: Event) => {
+                    {repository.map((item) => {
                         return(
                             <li key={item.id}>
                                 <EventItem 
-                                    id={item.id} 
-                                    title={item.name} 
-                                    description={item.description} 
-                                    start_date={item.start_date} 
-                                    end_date={item.end_date} 
+                                    event={item as Event}
+                                    onDelete={onDelete}
                                 />
                             </li>
                         );

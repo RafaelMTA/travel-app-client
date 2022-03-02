@@ -25,6 +25,7 @@ const LoginForm = ({onSubmit}:Props) => {
                 icon={<EmailIcon />} 
                 value={email} 
                 onChange={e => setEmail(e.target.value)} 
+                required
             />
             <InputIcon 
                 type="password" 
@@ -33,6 +34,7 @@ const LoginForm = ({onSubmit}:Props) => {
                 icon={<LockIcon />} 
                 value={password} 
                 onChange={e => setPassword(e.target.value)} 
+                required
             />
             <SignIn>Sign In</SignIn>
         </Form>          

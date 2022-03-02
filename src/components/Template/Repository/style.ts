@@ -2,14 +2,35 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    grid-template-rows: 1fr 6fr;
+    grid-template-areas:
+    "head head"
+    "aside body";
 
+    width: 100vw;
+    height: 100vh;
 `;
 
-export const SearchContainer = styled.div`
+export const Aside = styled.aside`
     position: fixed;
-    margin: 10px;
-    top: 0;
-    right: 0;
+    grid-area: aside;
+
+    place-self: center start;
+`;
+
+export const Head = styled.div`
+    position: fixed;
+    grid-area: head;
+    
+    place-self: start start;
+`;
+
+export const Body = styled.div`
+    grid-area: body;
+
+    place-self: start center;
 `;
 
 export const Button = styled(Link)`

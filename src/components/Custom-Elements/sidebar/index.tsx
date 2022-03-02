@@ -28,7 +28,7 @@ const Sidebar = () => {
                     <LinkItem path="/" text="Home" icon={<HomeIcon className="icon-item" />}></LinkItem>               
                     {evt.eventId && 
                     <>                                       
-                        <LinkItem path="/event-formEdit" text="Event" icon={<EventIcon className="icon-item" />}></LinkItem>
+                        <LinkItem path="/event/edit" text="Event" icon={<EventIcon className="icon-item" />}></LinkItem>
                         <LinkItem path="/pax" text="Pax" icon={<PeopleAltRoundedIcon className="icon-item" />}></LinkItem>
                         <LinkItem path="/transport" text="Transport" icon={<DirectionsCarIcon className="icon-item" />}></LinkItem>
                         <LinkItem path="/accommodation" text="Accommodation" icon={<HotelIcon className="icon-item" />}></LinkItem>

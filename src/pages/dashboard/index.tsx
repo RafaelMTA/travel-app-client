@@ -1,11 +1,14 @@
-import React from 'react';
+import Template from 'components/Template';
 import { Container } from './style';
 
 const Dashboard = () => {
     return(
-        <Container>
+        <Template>
+            <Container>
             
-        </Container>
+            </Container>
+        </Template>
+        
     );
 }
 

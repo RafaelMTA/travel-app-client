@@ -16,9 +16,8 @@ export const List = styled.ul`
     list-style: none;
 
     display: grid;
-    grid-template-columns: 2fr 2fr 2fr 2fr;
+    grid-template-columns: 2fr 2fr 2fr;
     grid-template-rows: auto;
 
-    column-gap: 20px;
-    row-fap: 20px;
+    gap: 30px;
 `;

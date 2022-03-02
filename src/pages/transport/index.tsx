@@ -1,17 +1,34 @@
-import React from 'react';
+import { useEvent } from 'hooks/useEvent';
+import useFetch from 'hooks/useFetch';
+import { useEffect } from 'react';
+
 import TransportRepository from 'components/Repositories/transport';
+import RepositoryTemplate from 'components/Template/Repository';
 
 const Transport = () => {
-    const handleSearch = () => {
-        console.log('clicked search');
+    const fetch = useFetch();
+    const evt = useEvent();   
+
+    useEffect(() => {
+        (async() => await loadData())();
+    }, []);
+
+    const loadData = async () => {
+        await fetch.execute("GET", {eventId: evt.eventId!, table: "transport"});
     }
 
-    const handleDeleteItem = () => {
-        console.log('clicked delete');
+    const handleDelete = async(id:string, title:string) => {
+        const confirm = window.confirm("Delete transport? " + title);
+        if (confirm){
+            if(id) await fetch.execute("DELETE", {eventId: evt.eventId!, table: "transport", tableId: id});
+            await loadData();
+        }      
     }
+
+    if(fetch.loading) return (<>Loading</>);
 
     return (
-        <TransportRepository onSearchValue={handleSearch} onDeleteItem={handleDeleteItem} />
+        <RepositoryTemplate addPath='new'><TransportRepository repository={fetch.response} onDelete={handleDelete} /></RepositoryTemplate>
     );
 }
 

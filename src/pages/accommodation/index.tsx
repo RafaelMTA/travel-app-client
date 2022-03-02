@@ -1,18 +1,34 @@
-import React, {useState} from 'react';
-import AccommodationRepository from 'components/Repositories/accommodation';
+import { useEvent } from 'hooks/useEvent';
 import useFetch from 'hooks/useFetch';
+import { useEffect } from 'react';
+
+import AccommodationRepository from 'components/Repositories/accommodation';
+import RepositoryTemplate from 'components/Template/Repository';
 
 const Accommodation = () => {
-    const handleSearch = () => {
-        console.log('clicked search');
+    const fetch = useFetch();
+    const evt = useEvent();   
+
+    useEffect(() => {
+        (async() => await loadData())();
+    }, []);
+
+    const loadData = async () => {
+        await fetch.execute("GET", {eventId: evt.eventId!, table: "accommodation"});
     }
 
-    const handleDeleteItem = () => {
-        console.log('clicked delete');
+    const handleDelete = async(id:string, title:string) => {
+        const confirm = window.confirm("Delete accommodation? " + title);
+        if (confirm){
+            if(id) await fetch.execute("DELETE", {eventId: evt.eventId!, table: "accommodation", tableId: id});
+            await loadData();
+        }      
     }
+
+    if(fetch.loading) return (<>Loading</>);
 
     return (
-        <AccommodationRepository onSearchValue={handleSearch} onDeleteItem={handleDeleteItem} />
+        <RepositoryTemplate addPath='new'><AccommodationRepository repository={fetch.response} onDelete={handleDelete} /></RepositoryTemplate>
     );
 }
 

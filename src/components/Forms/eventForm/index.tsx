@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
-import { Container, Form, InputContainer, Button } from './style';
+import React, { useEffect, useState } from 'react';
+import { Container, Form, Button } from './style';
 import InputLabel from 'components/Custom-Elements/inputLabel';
 
 interface Props{
+    type:string;
     onSubmit(e:React.FormEvent<HTMLFormElement>, data: object):void;
+    repositoryData?: object;
 } 
 
-const EventForm = ({onSubmit}: Props) => {
+const EventForm = ({type, onSubmit, repositoryData}: Props) => {
     const [data, setData] = useState({
         title: '',
         description: '',
         start_date: '',
-        end_date: '',      
+        end_date: ''
     });
+
+    useEffect(() => {
+        if(repositoryData) {
+            setData(data => ({...data, ...repositoryData}));
+        }
+    },[]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.persist();
@@ -21,20 +29,12 @@ const EventForm = ({onSubmit}: Props) => {
 
     return(
         <Container>
-            <Form onSubmit={e => onSubmit(e, data)}>
-                <InputContainer>
-                    <InputLabel label="title" type="text" id="title" value={data.title} onChange={handleChange} />
-                </InputContainer>
-                <InputContainer>
-                    <InputLabel label="description" type="text" id="description" value={data.title} onChange={handleChange} />
-                </InputContainer>
-                <InputContainer>
-                    <InputLabel label="Starting Date" type="date" id="start_date" value={data.title} onChange={handleChange} />
-                </InputContainer>
-                <InputContainer>
-                    <InputLabel label="Ending Date" type="date" id="end_date" value={data.title} onChange={handleChange} />
-                </InputContainer>
-                <Button>EDIT</Button>
+            <Form onSubmit={e => onSubmit(e, data!)}>
+                <InputLabel label="title" type="text" id="title" value={data.title || ""} onChange={handleChange} required />
+                <InputLabel label="description" type="textarea" id="description" value={data.description || ""} onChange={handleChange} required />
+                <InputLabel label="Starting Date" type="datetime-local" id="start_date" value={data.start_date || ""} onChange={handleChange} required />
+                <InputLabel label="Ending Date" type="datetime-local" id="end_date" value={data.end_date || ""} onChange={handleChange} required />
+                <Button>{type}</Button>
             </Form>
         </Container>
     );

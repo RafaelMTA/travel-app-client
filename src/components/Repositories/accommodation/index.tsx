@@ -1,35 +1,29 @@
-import React, {useState} from 'react';
-import { Container } from './style';
-
-import InputIcon from 'components/Custom-Elements/inputIcon';
-
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import SearchIcon from '@material-ui/icons/Search';
+import AccommodationItem from 'components/Custom-Elements/repositoryitem/accommodationItem';
+import { Accommodation } from 'interfaces/Accommodation';
+import { Container, ContainerItem, List } from './style';
 
 interface Props {
-    onSearchValue: any;
-    onDeleteItem: any;
+    repository: Array<Accommodation>;
+    onDelete(id:string, title:string):Promise<void>;
 }
 
-const AccommodationRepository = ({onSearchValue, onDeleteItem} : Props) => {
-    const [search, setSearch] = useState('');
-
-    const handleSearchValue = (query:string) => {
-        onSearchValue(query);
-    }
-
+const AccommodationRepository = ({repository, onDelete} : Props) => {
     return (
-        <Container>
-            <InputIcon 
-                type="text" 
-                id="" 
-                placeholder="Search for an Accommodation..." 
-                icon={<SearchIcon />} 
-                value={search} 
-                onChange={e => setSearch(e.target.value)} 
-                buttonIcon={<ArrowForwardIcon />}
-                onClick={() => handleSearchValue(search)}
-            />
+        <Container>       
+            <ContainerItem>           
+                <List>
+                    {repository.map((item) => {
+                        return(
+                            <li key={item.id}>
+                                <AccommodationItem 
+                                    accommodation={item as Accommodation}
+                                    onDelete={onDelete}
+                                />
+                            </li>
+                        );
+                    })}
+                </List>
+            </ContainerItem>            
         </Container>
     );
 }

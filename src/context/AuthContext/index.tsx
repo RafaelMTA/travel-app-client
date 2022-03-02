@@ -1,14 +1,17 @@
 import { useEvent } from 'hooks/useEvent';
 import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getTokenLocalStorage, LoginRequest, setTokenLocalStorage } from './utils';
+import { getTokenLocalStorage, LoginRequest, RegisterRequest, setTokenLocalStorage } from './utils';
+
+const baseURL = "http://localhost:4000/api/";
 
 export interface IContext{
     authenticated: boolean;
     token?: string | null;
     loading: boolean;
     login: (email:string, password:string) => Promise<void>;
-    logout: () => void;
+    register: (email: string, password:string, confirmPassword:string) => Promise<void>;
+    logout: () => void;    
 }
 
 export const AuthContext = createContext<IContext>({} as IContext);
@@ -28,6 +31,7 @@ export const AuthProvider = ({children}:{children:JSX.Element}) => {
     const login = async(email:string, password:string) => {
         const response = await LoginRequest(email, password);
         const token = response.token;
+        
         setToken(token);
         setTokenLocalStorage(token);
         navigate("/");
@@ -40,12 +44,18 @@ export const AuthProvider = ({children}:{children:JSX.Element}) => {
         navigate("/login");
     }
 
+    const register = async(email: string, password: string, confirmPassword: string) => {
+        await RegisterRequest(email, password, confirmPassword);
+        navigate("/login");
+    }
+
     return (
         <AuthContext.Provider
             value={{
                 authenticated: !!token,
                 token,
                 loading,
+                register,
                 login,
                 logout
             }}

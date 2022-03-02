@@ -1,18 +1,18 @@
 import styled from 'styled-components';
+import Template from 'components/Template/index';
 
-export const Container = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
+export const Container = styled(Template)`
+    
 `;
 
 export const Form = styled.form`
-
-`; 
-
-export const InputContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
 
+    gap: 15px;
+`; 
+
+export const InputContainer = styled.div`
     padding-bottom: 15px;
 `;
 

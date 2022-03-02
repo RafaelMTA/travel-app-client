@@ -1,26 +1,31 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from './useAuth';
 
-const useFetch = (method:string) => {
+interface URL {
+    eventId?:string;
+    table?:string;
+    tableId?:string;    
+}
+
+const useFetch = () => {
     const auth = useAuth();
 
-    const [data, setData] = useState<any>([]);
+    const [response, setResponse] = useState([]);
     const [loading, setLoading] = useState(false);
     const [loadingError, setLoadingError] = useState(false);
 
-    const baseURL = 'http://localhost:4000/api/event';
+    const baseURL = 'http://localhost:4000/api';
 
     const headers = new Headers({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${auth.token}`
     });
 
-    const fetchData = async(eventId?:string, table?:string, tableId?:string, query?:string, body?:object) => {
-        let url = baseURL;
-        eventId && (url += `/${eventId}`);
-        table && (url += `/${table}`);
-        tableId && (url += `/${tableId}`);
-        query && (url += `?${query}`);
+    const fetchData = async(method:string, optionalURL?:URL, body?:object) => {
+        let url = baseURL + "/event";
+        optionalURL?.eventId && (url += `/${optionalURL?.eventId}`);
+        optionalURL?.table && (url += `/${optionalURL?.table}`);
+        optionalURL?.tableId && (url += `/${optionalURL?.tableId}`);
 
         const response = await fetch(url, {
             method: method,
@@ -29,28 +34,25 @@ const useFetch = (method:string) => {
             headers: headers,
             body: JSON.stringify(body)
         });
+
+        if(response.status === 405) auth.logout();
+
         return response.json();
     };
 
-    const execute = async(eventId?:string, table?:string, tableId?:string, query?:string, body?:object) => {
+    const execute = async(method:string, optionalURL?:URL, body?:object) => {
         try{
             setLoading(true);
-            const response = await fetchData(eventId, table, tableId, query, body);    
-            setData(response.data);
+            const response = await fetchData(method, optionalURL, body);     
+            setResponse(response);          
             setLoading(false);
-            setLoadingError(false);
-        }catch(error){
+            setLoadingError(false);     
+        }catch(error){            
             setLoadingError(true);
         }
     }
 
-    useEffect(() => {
-        console.log("Fetch Context");
-        if(method !== 'GET') return;
-        (async() => await execute())();
-    }, []);
-
-    return { data, execute, loading, loadingError };
+    return { response, execute, loading, loadingError };
 }
 
 export default useFetch;

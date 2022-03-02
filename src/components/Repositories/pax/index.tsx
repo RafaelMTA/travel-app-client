@@ -1,33 +1,30 @@
-import React, {useState} from 'react';
-
-import InputIcon from 'components/Custom-Elements/inputIcon';
-
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import SearchIcon from '@material-ui/icons/Search';
+import { Container, ContainerItem, List } from './style';
+import { Pax } from 'interfaces/Pax';
+import PaxItem from 'components/Custom-Elements/repositoryitem/paxItem';
 
 interface Props {
-    onSearchValue: any;
-    onDeleteItem: any;
+    repository: Array<Pax>;
+    onDelete(id:string, title:string):Promise<void>;
 }
-
-const PaxRepository = ({onSearchValue, onDeleteItem} : Props) => {
-    const [search, setSearch] = useState('');
-
-    const handleSearchValue = (query:string) => {
-        onSearchValue(query);
-    }
-
+ 
+const PaxRepository = ({repository, onDelete} : Props) => {
     return (
-        <InputIcon 
-            type="text" 
-            id="" 
-            placeholder="Search for an Pax..." 
-            icon={<SearchIcon />} 
-            value={search} 
-            onChange={e => setSearch(e.target.value)} 
-            buttonIcon={<ArrowForwardIcon />}
-            onClick={() => handleSearchValue(search)}
-        />
+        <Container>       
+            <ContainerItem>           
+                <List>
+                    {repository.map((item) => {
+                        return(
+                            <li key={item.id}>
+                                <PaxItem 
+                                    pax={item as Pax}
+                                    onDelete={onDelete}
+                                />
+                            </li>
+                        );
+                    })}
+                </List>
+            </ContainerItem>            
+        </Container>
     );
 }
 

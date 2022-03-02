@@ -1,33 +1,30 @@
-import React, {useState} from 'react';
-
-import InputIcon from 'components/Custom-Elements/inputIcon';
-
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import SearchIcon from '@material-ui/icons/Search';
+import TransportItem from 'components/Custom-Elements/repositoryitem/transportItem';
+import { Transport } from 'interfaces/Transport';
+import { Container, ContainerItem, List } from './style';
 
 interface Props {
-    onSearchValue: any;
-    onDeleteItem: any;
+    repository: Array<Transport>;
+    onDelete(id:string, title:string):Promise<void>;
 }
 
-const TransportRepository = ({onSearchValue, onDeleteItem} : Props) => {
-    const [search, setSearch] = useState('');
-
-    const handleSearchValue = (query:string) => {
-        onSearchValue(query);
-    }
-
+const TransportRepository = ({repository, onDelete} : Props) => {
     return (
-        <InputIcon 
-            type="text" 
-            id="" 
-            placeholder="Search for an Transport..." 
-            icon={<SearchIcon />} 
-            value={search} 
-            onChange={e => setSearch(e.target.value)} 
-            buttonIcon={<ArrowForwardIcon />}
-            onClick={() => handleSearchValue(search)}
-        />
+        <Container>       
+            <ContainerItem>           
+                <List>
+                    {repository.map((item) => {
+                        return(
+                            <li key={item.id}>
+                                <TransportItem 
+                                    transport={item as Transport}
+                                    onDelete={onDelete}
+                                />
+                            </li>
+                        );
+                    })}
+                </List>
+            </ContainerItem>            
+        </Container>
     );
 }
 

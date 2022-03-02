@@ -13,9 +13,10 @@ interface Props{
     icon: any;
     buttonIcon?: any;
     bgColor?: string;
+    required?: boolean;
 }
 
-const InputIcon = ({type, id, placeholder, value, onChange, onClick, icon, buttonIcon, bgColor} : Props) => {
+const InputIcon = ({type, id, placeholder, value, onChange, onClick, icon, buttonIcon, bgColor, required} : Props) => {
     const Button = styled.button`
         cursor: pointer;
         width: 3em;
@@ -44,7 +45,8 @@ const InputIcon = ({type, id, placeholder, value, onChange, onClick, icon, butto
                 id={id} 
                 placeholder={placeholder} 
                 value={value} 
-                onChange={onChange}   
+                onChange={onChange}  
+                required={required} 
             />
             <Icon>{icon}</Icon>       
             {buttonIcon ? <Button onClick={onClick}>{buttonIcon}</Button> : ""}         

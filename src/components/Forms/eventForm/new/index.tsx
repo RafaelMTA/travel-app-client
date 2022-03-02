@@ -1,19 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import EventForm from '..';
 
-import { repositoryCreate } from 'service/api';
-import { useEvent } from 'hooks/useEvent';
+import useFetch from 'hooks/useFetch';
 
 const EventFormNew = () => {
-    const evt = useEvent();
-
+    const fetch = useFetch();
+    const navigate = useNavigate();
+    
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>, data: object) => {
         e.preventDefault();
-        await repositoryCreate(data, evt.eventId!);
+        fetch.execute("POST", {}, data);
+        navigate("/");
     }
 
     return(
-        <><EventForm onSubmit={e => handleSubmit}/></>
+        <><EventForm type="CREATE NEW EVENT" onSubmit={handleSubmit}/></>
     );
 }
 

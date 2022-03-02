@@ -23,7 +23,7 @@ const Login = () => {
 
     return (
         <Container>
-            <LoginForm onSubmit={handleSubmit}></LoginForm>
+            <LoginForm onSubmit={handleSubmit} />
         </Container>    
     );
 }

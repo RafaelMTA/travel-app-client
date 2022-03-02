@@ -1,34 +1,39 @@
-import {useEffect, useState} from 'react';
-import EventRepository from 'components/Repositories/event';
+import {useEffect} from 'react';
 import { Container } from './style';
-import { repositoryGetAll } from 'service/api';
+
 import { useEvent } from 'hooks/useEvent';
-import { AxiosError } from 'axios';
-import { useAuth } from 'hooks/useAuth';
+import useFetch from 'hooks/useFetch';
+
+import RepositoryTemplate from 'components/Template/Repository';
+import EventRepository from 'components/Repositories/event';
 
 const Event = () => {
-    const [repository, setRepository] = useState([]);
-    const { clear, set } = useEvent();
-    const auth = useAuth();
-    
-    const loadData = async(query="") => {
-        try{
-            const response = await repositoryGetAll(query);
-            setRepository(response.data);
-        }catch(error){
-            const err = error as AxiosError;
-            if(err?.response?.status !== 200) auth.logout();
-        }
-    }
+    const fetch = useFetch();
+    const event = useEvent();   
 
     useEffect(() => {
         (async() => await loadData())();
-        clear();
+        event.clear();
     }, []);
+
+    const loadData = async () => {
+        await fetch.execute("GET");
+    }
+
+    const handleDelete = async(id:string, title:string) => {
+        const confirm = window.confirm("Delete event? " + title);
+        if (confirm){
+            if(id) await fetch.execute("DELETE", {eventId: id});
+            event.clear();
+            await loadData();
+        }      
+    }
+
+    if(fetch.loading) return (<>Loading</>);
 
     return (
         <Container>
-            <EventRepository repository={repository} />  
+            <RepositoryTemplate addPath='/event/new'><EventRepository repository={fetch.response} onDelete={handleDelete} /></RepositoryTemplate>
         </Container>         
     );
 }

@@ -1,17 +1,33 @@
-import React from 'react';
+import { useEffect } from 'react';
 import PaxRepository from 'components/Repositories/pax';
+import RepositoryTemplate from 'components/Template/Repository';
+import { useEvent } from 'hooks/useEvent';
+import useFetch from 'hooks/useFetch';
 
 const Pax = () => {
-    const handleSearch = () => {
-        console.log('clicked search');
+    const fetch = useFetch();
+    const evt = useEvent();   
+    
+    useEffect(() => {
+        (async() => await loadData())();
+    }, []);
+
+    const loadData = async () => {
+        await fetch.execute("GET", {eventId: evt.eventId!, table: "pax"});
     }
 
-    const handleDeleteItem = () => {
-        console.log('clicked delete');
+    const handleDelete = async(id:string, title:string) => {
+        const confirm = window.confirm("Delete pax? " + title);
+        if (confirm){
+            if(id) await fetch.execute("DELETE", {eventId: evt.eventId!, table: "pax", tableId: id});
+            await loadData();
+        }      
     }
 
+    if(fetch.loading) return (<>Loading</>);
+    
     return (
-        <PaxRepository onSearchValue={handleSearch} onDeleteItem={handleDeleteItem} />
+        <RepositoryTemplate addPath='new'><PaxRepository repository={fetch.response} onDelete={handleDelete} /></RepositoryTemplate>
     );
 }
 
