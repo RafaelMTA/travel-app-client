@@ -31,7 +31,7 @@ export const EventProvider = ({children}:{children:JSX.Element}) => {
     const set = (eventId:string) => {
         setEventId(eventId);
         setEventLocalStorage(eventId);
-        navigate('/dashboard');
+        navigate('/event/edit');
     }
 
     return (
