@@ -1,6 +1,6 @@
+import { useEffect } from 'react';
 import { useEvent } from 'hooks/useEvent';
 import useFetch from 'hooks/useFetch';
-import { useEffect } from 'react';
 
 import AccommodationRepository from 'components/Repositories/accommodation';
 import RepositoryTemplate from 'components/Template/Repository';

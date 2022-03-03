@@ -1,34 +1,21 @@
-import { useEvent } from 'hooks/useEvent';
-import useFetch from 'hooks/useFetch';
-import { useEffect } from 'react';
-
-import ProfileRepository from 'components/Repositories/profile';
-import RepositoryTemplate from 'components/Template/Repository';
+import Template from 'components/Template';
+import ProfileForm from 'components/Forms/profileForm';
+import { useAuth } from 'hooks/useAuth';
+import { IUser } from 'interfaces/User';
+import { useNavigate } from 'react-router-dom';
 
 const Accommodation = () => {
-    const fetch = useFetch();
-    const evt = useEvent();   
-
-    useEffect(() => {
-        (async() => await loadData())();
-    }, []);
-
-    const loadData = async () => {
-        await fetch.execute("GET", {eventId: evt.eventId!, table: "accommodation"});
+    const auth = useAuth();  
+    const navigate = useNavigate();
+    
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, data: IUser) => { 
+        e.preventDefault();
+        await auth.updateProfile(data.email, data.imageURL);
+        navigate('/');
     }
-
-    const handleDelete = async(id:string, title:string) => {
-        const confirm = window.confirm("Delete accommodation? " + title);
-        if (confirm){
-            if(id) await fetch.execute("DELETE", {eventId: evt.eventId!, table: "accommodation", tableId: id});
-            await loadData();
-        }      
-    }
-
-    if(fetch.loading) return (<>Loading</>);
 
     return (
-        <RepositoryTemplate addPath='new'><ProfileRepository /></RepositoryTemplate>
+        <Template><ProfileForm repositoryData={auth.user!} onSubmit={handleSubmit} /></Template>
     );
 }
 

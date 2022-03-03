@@ -1,13 +1,10 @@
 import {useEffect} from 'react';
-import { Container } from './style';
 
 import { useEvent } from 'hooks/useEvent';
 import useFetch from 'hooks/useFetch';
 
 import RepositoryTemplate from 'components/Template/Repository';
 import EventRepository from 'components/Repositories/event';
-import useSearch from 'hooks/useSearch';
-import { IEvent } from 'interfaces/Event';
 
 const Event = () => {
     const fetch = useFetch();
@@ -34,9 +31,7 @@ const Event = () => {
     if(fetch.loading) return (<>Loading</>);
 
     return (
-        <Container>
-            <RepositoryTemplate addPath='/event/new'><EventRepository repository={fetch.response} onDelete={handleDelete} /></RepositoryTemplate>
-        </Container>         
+        <RepositoryTemplate addPath='/event/new'><EventRepository repository={fetch.response} onDelete={handleDelete} /></RepositoryTemplate>
     );
 }
 
