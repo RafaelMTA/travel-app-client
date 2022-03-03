@@ -8,7 +8,6 @@ import Pax from 'pages/pax';
 import Profile from 'pages/profile';
 import Transport from 'pages/transport';
 import Service from 'pages/service';
-import Dashboard from 'pages/dashboard';
 
 import EventFormEdit from 'components/Forms/eventForm/edit'
 import EventFormNew from 'components/Forms/eventForm/new'
@@ -56,7 +55,6 @@ const AppRoutes = () => {
                         <Route path="/" element={<Private><Event /></Private>} />
                         <Route path="/profile" element={<Private><Profile /></Private>} />
                         
-                        <Route path="/dashboard" element={<Private><Dashboard /></Private>} />
                         <Route path="/accommodation" element={<Private><Accommodation /></Private>} />
                         <Route path="/pax" element={<Private><Pax /></Private>} />                       
                         <Route path="/transport" element={<Private><Transport /></Private>} />
