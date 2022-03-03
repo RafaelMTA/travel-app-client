@@ -7,9 +7,9 @@ const useSearch = () => {
         setSearch('');
     }
 
-    // useEffect(() => {
-    //     clear();
-    // },[]);
+    useEffect(() => {
+        clear();
+    },[]);
 
     return {search, setSearch, clear};
 }

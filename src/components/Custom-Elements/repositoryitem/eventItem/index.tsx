@@ -8,10 +8,10 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import TodayIcon from '@material-ui/icons/Today';
 
 import { useEvent } from 'hooks/useEvent';
-import { Event } from 'interfaces/Event';
+import { IEvent } from 'interfaces/Event';
 
 interface Props{
-    event: Event;
+    event: IEvent;
     onDelete(id:string, title:string):Promise<void>;
 }
 

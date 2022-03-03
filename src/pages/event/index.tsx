@@ -6,11 +6,13 @@ import useFetch from 'hooks/useFetch';
 
 import RepositoryTemplate from 'components/Template/Repository';
 import EventRepository from 'components/Repositories/event';
+import useSearch from 'hooks/useSearch';
+import { IEvent } from 'interfaces/Event';
 
 const Event = () => {
     const fetch = useFetch();
     const event = useEvent();   
-
+    
     useEffect(() => {
         (async() => await loadData())();
         event.clear();

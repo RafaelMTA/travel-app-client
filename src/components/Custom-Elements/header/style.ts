@@ -38,7 +38,7 @@ export const Logo = styled.img`
     border: 2px solid white;
 
     width: 30%;
-    height: 100%;
+    height: 9vh;
 `;
 
 export const Title = styled.h1`

@@ -15,9 +15,7 @@ const RepositoryTemplate = ({addPath, children}:Props) => {
     return( 
         <Container>
             <Head>
-                <Header imagePath='' title='Travel-App' >
-                    <InputSearch />
-                </Header>
+                <Header imagePath='' title='Travel-App' ></Header>
             </Head>
             <Aside>             
                 <Sidebar />

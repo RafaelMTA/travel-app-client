@@ -1,9 +1,9 @@
 import { Container, ContainerItem, List } from './style';
-import { Event } from 'interfaces/Event';
+import { IEvent } from 'interfaces/Event';
 import EventItem from 'components/Custom-Elements/repositoryitem/eventItem';
 
 interface Props {
-    repository: Array<Event>;
+    repository: Array<IEvent>;
     onDelete(id:string, title:string):Promise<void>;
 }
 
@@ -16,7 +16,7 @@ const EventRepository = ({repository, onDelete} : Props) => {
                         return(
                             <li key={item.id}>
                                 <EventItem 
-                                    event={item as Event}
+                                    event={item as IEvent}
                                     onDelete={onDelete}
                                 />
                             </li>

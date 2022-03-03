@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import InputIcon from 'components/Custom-Elements/inputIcon';
 
 import SearchIcon from '@material-ui/icons/Search';
