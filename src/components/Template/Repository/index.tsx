@@ -2,7 +2,6 @@ import { Container, Head, Aside, Body, Button } from './style';
 
 import Sidebar from 'components/Custom-Elements/sidebar';
 import Header from 'components/Custom-Elements/header';
-import InputSearch from 'components/Custom-Elements/InputSearch';
 
 import AddIcon from '@material-ui/icons/Add';
 

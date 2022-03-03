@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-const iconClassName = 'icon-item';
-
 export const NavContainer = styled.nav`
     display: flex;
     flex-flow: column nowrap;
@@ -26,7 +24,7 @@ export const NavContainer = styled.nav`
         }
     }
 
-    & .${iconClassName}{
+    & .icon-item{
         width: 2em;
         height: 2em;
     }

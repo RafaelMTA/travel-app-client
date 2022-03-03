@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import EventForm from '..';
+import TransportForm from '..';
 
 import useFetch from 'hooks/useFetch';
 import { useEvent } from 'hooks/useEvent';
@@ -17,7 +17,7 @@ const TransportFormNew = () => {
     }
 
     return(
-        <><EventForm type="CREATE NEW TRANSPORT" onSubmit={handleSubmit}/></>
+        <><TransportForm type="CREATE NEW TRANSPORT" onSubmit={handleSubmit}/></>
     );
 }
 

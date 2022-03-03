@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { NavContainer, NavHeader } from './style';
 
 import ImageText from 'components/Custom-Elements/imageText';
@@ -19,11 +19,16 @@ const Sidebar = () => {
     const auth = useAuth();
     const evt = useEvent();
     
+    const logout = () => {
+        evt.clear();
+        auth.logout();
+    }
+
     return(     
         <NavContainer>
             <NavHeader>
                 <div>
-                    <LinkItem path="/profile" text="Charles" icon={<ImageText src="https://randomuser.me/api/portraits/thumb/men/29.jpg" />}></LinkItem>
+                    <LinkItem path="/profile" text={auth.user! && auth.user.email} icon={<ImageText src={auth.user! && auth.user.imageURL} />}></LinkItem>
                     <hr />     
                     <LinkItem path="/" text="Home" icon={<HomeIcon className="icon-item" />}></LinkItem>               
                     {evt.eventId && 
@@ -37,7 +42,7 @@ const Sidebar = () => {
                 </div>                          
                 <div>       
                     <hr />        
-                    <span onClick={auth.logout}><ExitToAppRoundedIcon className="icon-item" /><p>Logout</p></span>
+                    <span onClick={logout}><ExitToAppRoundedIcon className="icon-item" /><p>Logout</p></span>
                 </div>
             </NavHeader>          
         </NavContainer>    

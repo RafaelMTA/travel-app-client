@@ -32,8 +32,7 @@ export const TextArea = styled.textarea`
 
     outline: 0;
 
-    padding-left: 10px;
-    padding-top: 10px;
+    padding: 10px;
 `;
 
 export const Label = styled.label`

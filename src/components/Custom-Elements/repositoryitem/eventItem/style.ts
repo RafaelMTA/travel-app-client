@@ -21,11 +21,14 @@ export const Container = styled.div`
         width: 1.5em;
         height: 1.5em;        
     }
+
+    overflow: hidden;
 `;
 
 export const ImageContainer = styled.img`
-    width: 30%;
-
+    grid-area: image;
+    width: 90%;
+    height: 90%;
     margin: 8px;
 
     border: 2px solid gray;
@@ -34,12 +37,12 @@ export const ImageContainer = styled.img`
 
 export const DataContainer = styled.div`
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr 2fr 1fr;
     grid-template-rows: 2fr 2fr 2fr;
     grid-template-areas: 
-    "title title action"
-    "description description description"
-    "date_initial date_end date_remain";
+    "image title title action"
+    "image description description description"
+    "image date_initial date_end date_remain";
 `;
 
 export const Title = styled.h1`
@@ -52,6 +55,7 @@ export const Description = styled.p`
     text-transform: capitalize;
 
     place-self: center start;
+    
 `;
 
 export const DateInitial = styled.span`

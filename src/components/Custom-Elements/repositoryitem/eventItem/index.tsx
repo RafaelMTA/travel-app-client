@@ -16,18 +16,16 @@ interface Props{
 }
 
 const EventItem = ({event, onDelete}:Props) => {
-    const navigate = useNavigate();
     const evt = useEvent();
 
     const handleDashboard = () => {
         evt.set(event.id);
-        navigate('/dashboard');
     }
 
     return(
-        <Container>    
-            <ImageContainer src=""></ImageContainer>
+        <Container>               
             <DataContainer onClick={handleDashboard}>
+                <ImageContainer src={event.imageURL || ""}></ImageContainer>
                 <Title>{event.title}</Title>
                 <Description>{event.description}</Description>         
                 <DateInitial><TodayIcon /><Moment format="DD-MM-YYYY">{event.start_date}</Moment></DateInitial>

@@ -10,4 +10,7 @@ export const ImageContainer = styled.div`
 
 export const Image = styled.img`
     border-radius: 10px;
+    border: 2px solid white;
+    width: 2.8em;
+    height: 2.8em;
 `;

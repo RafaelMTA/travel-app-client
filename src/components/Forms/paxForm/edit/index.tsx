@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import EventForm from '..';
+import PaxForm from '..';
 
 import { useEvent } from 'hooks/useEvent';
 import useFetch from 'hooks/useFetch';
@@ -30,7 +30,7 @@ const PaxFormEdit = () => {
     if(fetch.loading) return(<>loading</>);
 
     return(
-        <><EventForm type="EDIT PAX" repositoryData={fetch.response} onSubmit={handleSubmit}/></>
+        <><PaxForm type="EDIT PAX" repositoryData={fetch.response} onSubmit={handleSubmit}/></>
     );
 }
 

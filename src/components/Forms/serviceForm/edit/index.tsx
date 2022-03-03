@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import EventForm from '..';
+import ServiceForm from '..';
 
 import { useEvent } from 'hooks/useEvent';
 import useFetch from 'hooks/useFetch';
@@ -30,7 +30,7 @@ const ServiceFormEdit = () => {
     if(fetch.loading) return(<>loading</>);
 
     return(
-        <><EventForm type="EDIT SERVICE" repositoryData={fetch.response} onSubmit={handleSubmit}/></>
+        <><ServiceForm type="EDIT SERVICE" repositoryData={fetch.response} onSubmit={handleSubmit}/></>
     );
 }
 

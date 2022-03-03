@@ -1,4 +1,3 @@
-import React from 'react';
 import {ImageContainer, Image} from './style';
 
 interface Props{

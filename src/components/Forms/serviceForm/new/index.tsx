@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import EventForm from '..';
+import ServiceForm from '..';
 
 import useFetch from 'hooks/useFetch';
 import { useEvent } from 'hooks/useEvent';
@@ -17,7 +17,7 @@ const ServiceFormNew = () => {
     }
 
     return(
-        <><EventForm type="CREATE NEW SERVICE" onSubmit={handleSubmit}/></>
+        <><ServiceForm type="CREATE NEW SERVICE" onSubmit={handleSubmit}/></>
     );
 }
 

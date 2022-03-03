@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { Container, ImageContainer, DataContainer, Name, Email, Occupation, Action } from './style';
 import ClearIcon from '@material-ui/icons/Clear';
 import { useEvent } from 'hooks/useEvent';
-import { Pax } from 'interfaces/Pax';
+import { IPax } from 'interfaces/Pax';
 
 interface Props{
-    pax: Pax; 
+    pax: IPax; 
     onDelete(id:string, title:string):Promise<void>;
 }
 
@@ -25,7 +25,7 @@ const PaxItem = ({pax, onDelete}:Props) => {
 
     return(
         <Container>    
-            <ImageContainer src=""></ImageContainer>
+            <ImageContainer src={pax.imageURL || ""}></ImageContainer>
             <DataContainer onClick={handleEdit}>
                 <Name>{getFullName}</Name>
                 <Email>{pax.email}</Email>  

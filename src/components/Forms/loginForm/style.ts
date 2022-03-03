@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Hr = styled.hr`
     width: 100%;
@@ -18,6 +19,10 @@ export const Form = styled.form`
 export const Title = styled.h1`
     text-transform: uppercase;
     margin: 20px;
+`;
+
+export const Register = styled(Link)`
+    text-decoration: none;
 `;
 
 export const SignIn = styled.button`

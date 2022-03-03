@@ -17,7 +17,7 @@ const EventFormEdit = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, data: object) => { 
         e.preventDefault();
         await fetch.execute("PUT", {eventId: evt.eventId!}, data);
-        navigate('/dashboard');
+        navigate('/event/edit');
     }
 
     if(fetch.loading) return(<>loading</>);

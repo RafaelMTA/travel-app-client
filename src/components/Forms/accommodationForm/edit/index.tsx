@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import EventForm from '..';
+import AccommodationForm from '..';
 
 import { useEvent } from 'hooks/useEvent';
 import useFetch from 'hooks/useFetch';
@@ -30,7 +30,7 @@ const AccommodationFormEdit = () => {
     if(fetch.loading) return(<>loading</>);
 
     return(
-        <><EventForm type="EDIT ACCOMMODATION" repositoryData={fetch.response} onSubmit={handleSubmit}/></>
+        <><AccommodationForm type="EDIT ACCOMMODATION" repositoryData={fetch.response} onSubmit={handleSubmit}/></>
     );
 }
 

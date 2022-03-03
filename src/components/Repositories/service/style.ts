@@ -8,10 +8,6 @@ export const Container = styled.div`
     align-items: center;
 `;
 
-export const ContainerItem = styled.div`
-
-`;
-
 export const List = styled.ul`
     list-style: none;
 

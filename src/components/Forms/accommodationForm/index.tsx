@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Container, Form, Button } from './style';
+import { Form, Button } from './style';
 import InputLabel from 'components/Custom-Elements/inputLabel';
+import Template from 'components/Template/index';
 
 interface Props{
     type:string;
@@ -15,7 +16,8 @@ const AccommodationForm = ({type, onSubmit, repositoryData}: Props) => {
         description: '',
         arrival: '',
         departure: '',
-        address: ''
+        address: '',
+        imageURL: ''
     });
 
     useEffect(() => {
@@ -30,16 +32,17 @@ const AccommodationForm = ({type, onSubmit, repositoryData}: Props) => {
     }
 
     return(
-        <Container>
+        <Template>
             <Form onSubmit={e => onSubmit(e, data!)}>
                 <InputLabel label="title" type="text" id="title" value={data.title || ""} onChange={handleChange} required />
                 <InputLabel label="description" type="textarea" id="description" value={data.description || ""} onChange={handleChange} required />
                 <InputLabel label="address" type="text" id="address" value={data.address || ""} onChange={handleChange} required />
                 <InputLabel label="arrival" type="date" id="arrival" value={data.arrival || ""} onChange={handleChange} required />
                 <InputLabel label="departure" type="date" id="departure" value={data.departure || ""} onChange={handleChange} required />
+                <InputLabel label="imageURL" type="text" id="imageURL" value={data.imageURL || ""} onChange={handleChange} required />
                 <Button>{type}</Button>
             </Form>
-        </Container>
+        </Template>
     );
 }
 

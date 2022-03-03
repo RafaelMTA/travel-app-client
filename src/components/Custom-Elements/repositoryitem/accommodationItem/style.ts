@@ -55,7 +55,7 @@ export const Arrival = styled.p`
 
 export const Departure = styled.p`
     grid-area: departure;
-    color: green;
+    color: red;
 `;
 
 export const Action = styled.span`

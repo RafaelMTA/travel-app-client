@@ -1,10 +1,10 @@
-import React, {useState, useRef, useEffect, useContext, DetailedHTMLProps, FormHTMLAttributes} from 'react';
+import React, {useState} from 'react';
 
 import InputIcon from 'components/Custom-Elements/inputIcon';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 
-import { Form, Title, SignIn, Hr } from './style';
+import { Form, Title, SignIn, Hr, Register } from './style';
 
 interface Props{
     onSubmit(e: React.FormEvent<HTMLFormElement>, email:string, password:string): void;
@@ -36,6 +36,7 @@ const LoginForm = ({onSubmit}:Props) => {
                 onChange={e => setPassword(e.target.value)} 
                 required
             />
+            <Register to="/register">Don't have an account? Sign up</Register>
             <SignIn>Sign In</SignIn>
         </Form>          
     );

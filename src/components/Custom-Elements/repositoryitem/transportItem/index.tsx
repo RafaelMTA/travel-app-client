@@ -5,10 +5,10 @@ import { Container, ImageContainer, DataContainer, Title, Arrival, Departure, Ac
 import ClearIcon from '@material-ui/icons/Clear';
 import TodayIcon from '@material-ui/icons/Today';
 
-import { Transport } from 'interfaces/Transport';
+import { ITransport } from 'interfaces/Transport';
 
 interface Props{
-    transport: Transport;
+    transport: ITransport;
     onDelete(id:string, title:string):Promise<void>;
 }
 
@@ -25,7 +25,7 @@ const TransportItem = ({transport, onDelete}:Props) => {
 
     return(
         <Container>    
-            <ImageContainer src=""></ImageContainer>
+            <ImageContainer src={transport.imageURL || ""}></ImageContainer>
             <DataContainer onClick={handleEdit}>
                 <Title>{transport.title}</Title>
                 <Arrival><TodayIcon /><Moment format="DD-MM-YYYY">{transport.arrival}</Moment></Arrival>

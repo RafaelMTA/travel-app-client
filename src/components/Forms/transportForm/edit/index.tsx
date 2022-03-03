@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import EventForm from '..';
+import TransportForm from '..';
 
 import { useEvent } from 'hooks/useEvent';
 import useFetch from 'hooks/useFetch';
@@ -30,7 +30,7 @@ const TransformFormEdit = () => {
     if(fetch.loading) return(<>loading</>);
 
     return(
-        <><EventForm type="EDIT TRANSPORT" repositoryData={fetch.response} onSubmit={handleSubmit}/></>
+        <><TransportForm type="EDIT TRANSPORT" repositoryData={fetch.response} onSubmit={handleSubmit}/></>
     );
 }
 

@@ -20,6 +20,6 @@ export const LinkContainer = styled(Link)`
 `;
 
 export const Text = styled.span`
-    font-size: 1.2em;
+    font-size: 0.9em;
     padding-left: 0.7em;
 `;

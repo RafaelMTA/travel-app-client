@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Form, Button } from './style';
+import { Form, Button } from './style';
 import InputLabel from 'components/Custom-Elements/inputLabel';
+import Template from 'components/Template/index';
 
 interface Props{
     type:string;
@@ -13,7 +14,8 @@ const EventForm = ({type, onSubmit, repositoryData}: Props) => {
         title: '',
         description: '',
         start_date: '',
-        end_date: ''
+        end_date: '',
+        imageURL: ''
     });
 
     useEffect(() => {
@@ -28,15 +30,16 @@ const EventForm = ({type, onSubmit, repositoryData}: Props) => {
     }
 
     return(
-        <Container>
+        <Template>
             <Form onSubmit={e => onSubmit(e, data!)}>
                 <InputLabel label="title" type="text" id="title" value={data.title || ""} onChange={handleChange} required />
                 <InputLabel label="description" type="textarea" id="description" value={data.description || ""} onChange={handleChange} required />
                 <InputLabel label="Starting Date" type="datetime-local" id="start_date" value={data.start_date || ""} onChange={handleChange} required />
                 <InputLabel label="Ending Date" type="datetime-local" id="end_date" value={data.end_date || ""} onChange={handleChange} required />
+                <InputLabel label="imageURL" type="text" id="imageURL" value={data.imageURL || ""} onChange={handleChange} />
                 <Button>{type}</Button>
             </Form>
-        </Container>
+        </Template>
     );
 }
 

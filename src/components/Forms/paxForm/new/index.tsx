@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import EventForm from '..';
+import PaxForm from '..';
 
 import useFetch from 'hooks/useFetch';
 import { useEvent } from 'hooks/useEvent';
@@ -17,7 +17,7 @@ const PaxFormNew = () => {
     }
 
     return(
-        <><EventForm type="CREATE NEW PAX" onSubmit={handleSubmit}/></>
+        <><PaxForm type="CREATE NEW PAX" onSubmit={handleSubmit}/></>
     );
 }
 

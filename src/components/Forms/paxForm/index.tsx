@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Form, Button } from './style';
+import { Form, Button } from './style';
 import InputLabel from 'components/Custom-Elements/inputLabel';
+import Template from 'components/Template/index';
 
 interface Props{
     type:string;
@@ -17,6 +18,7 @@ const PaxForm = ({type, onSubmit, repositoryData}: Props) => {
         occupation: '',
         address: '',
         birthday: '',
+        imageURL: ''
     });
 
     useEffect(() => {
@@ -31,7 +33,7 @@ const PaxForm = ({type, onSubmit, repositoryData}: Props) => {
     }
 
     return(
-        <Container>
+        <Template>
             <Form onSubmit={e => onSubmit(e, data!)}>
                 <InputLabel label="name" type="text" id="name" value={data.name || ""} onChange={handleChange} required />
                 <InputLabel label="surname" type="text" id="surname" value={data.surname || ""} onChange={handleChange} required />
@@ -39,9 +41,10 @@ const PaxForm = ({type, onSubmit, repositoryData}: Props) => {
                 <InputLabel label="occupation" type="text" id="occupation" value={data.occupation || ""} onChange={handleChange} required />
                 <InputLabel label="address" type="text" id="address" value={data.address || ""} onChange={handleChange} required />
                 <InputLabel label="birthday" type="date" id="birthday" value={data.birthday || ""} onChange={handleChange} required />
+                <InputLabel label="imageURL" type="text" id="imageURL" value={data.imageURL || ""} onChange={handleChange} />
                 <Button>{type}</Button>
             </Form>
-        </Container>
+        </Template>
     );
 }
 

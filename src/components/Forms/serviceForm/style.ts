@@ -1,9 +1,4 @@
 import styled from 'styled-components';
-import Template from 'components/Template/index';
-
-export const Container = styled(Template)`
-    
-`;
 
 export const Form = styled.form`
     display: flex;

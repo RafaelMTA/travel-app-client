@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import EventForm from '..';
+import AccommodationForm from '..';
 
 import useFetch from 'hooks/useFetch';
 import { useEvent } from 'hooks/useEvent';
@@ -17,7 +17,7 @@ const AccommodationFormNew = () => {
     }
 
     return(
-        <><EventForm type="CREATE NEW ACCOMMODATION" onSubmit={handleSubmit}/></>
+        <><AccommodationForm type="CREATE NEW ACCOMMODATION" onSubmit={handleSubmit}/></>
     );
 }
 
