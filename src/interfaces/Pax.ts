@@ -6,4 +6,5 @@ export interface IPax {
     occupation: string;  
     address: string;
     birthday: string; 
+    imageURL:string;
 }

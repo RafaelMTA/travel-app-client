@@ -5,4 +5,5 @@ export interface IAccommodation {
     arrival: string;
     departure: string;  
     address:string;
+    imageURL:string;
 }

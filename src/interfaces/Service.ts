@@ -5,4 +5,5 @@ export interface IService {
     arrival: string;
     departure: string;  
     address:string;
+    imageURL:string;
 }
