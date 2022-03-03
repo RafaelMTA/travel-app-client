@@ -1,4 +1,4 @@
-export interface Pax {
+export interface IPax {
     id: string;
     name: string;
     surname: string;

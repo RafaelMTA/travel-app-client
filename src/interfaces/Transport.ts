@@ -1,4 +1,4 @@
-export interface Transport {
+export interface ITransport {
     id: string;
     title: string;
     description: string;
