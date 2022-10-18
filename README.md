@@ -8,3 +8,14 @@ Sistema simples de gerenciamento de Eventos
 * Material-UI
 * Moment
 
+---------------------------------------------------------------------------
+# Project
+A simple event management system 
+# Main Technologies
+* React
+* Typescript
+# Styling/Formating
+* Styled-Components
+* Material-UI
+* Moment
+
